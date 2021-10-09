@@ -12,6 +12,8 @@ TagManager:
   - Polygon8
   - Polygon9
   - Triangle
+  - Polygon10
+  - Polygon11
   layers:
   - Default
   - TransparentFX

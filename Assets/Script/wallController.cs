@@ -17,6 +17,6 @@ public class wallController : MonoBehaviour
     void Update()
     {
             Vector3 wallPos = symbol.transform.position;
-            transform.position = new Vector3(transform.position.x, wallPos.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, wallPos.y+4f, transform.position.z);
     }
 }

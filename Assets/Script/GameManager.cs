@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
 
     public float lineHight;
     public float lineWidthStartPoint;
-    public float distance = 0.5f;
+    public float symbolDistance;
+    public float lineDistance;
     int countForGenerateHight = 1;
     int stageNum = 1; 
     bool lastSymbol;
@@ -31,10 +32,14 @@ public class GameManager : MonoBehaviour
     bool isSymbolGenerated;
     bool isSymbolDeleted;
     
+    public GameObject canvas;
+
+ 
+    
     // Start is called before the first frame update
     void Awake()
     {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
     void Start()
     {
@@ -42,10 +47,17 @@ public class GameManager : MonoBehaviour
     }    
 
     void Update()
-    {
+    {   
+        //PC用
         if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
         {
-            Time.timeScale = 1f;
+            canvas.SetActive(false);
+        }
+        
+        //スマホ用
+        if(Input.GetMouseButtonDown(0))
+        {
+            canvas.SetActive(false);
         }
 
         Vector2 playerPos = player.transform.position;
@@ -63,29 +75,28 @@ public class GameManager : MonoBehaviour
             isSymbolGenerated = false;
         }
         
-        /*　シンボルを定期的に消す
+        //シンボルを定期的に消す
         if(playerPos.y > 15 * countForGenerateHight){
+            
             isSymbolDeleted = false;
             if(!isSymbolDeleted){
-            symbolDelete();
-            countForGenerateHight++;
+                symbolDelete();
+                countForGenerateHight++;
             }
             isSymbolDeleted = true;
 
-        }*/
+        }
         scoreText.text = score.ToString();
 
     }
-    //消し方わからん
+    
     void symbolDelete()
     {
-        for(int i = 0; i < 6*2; i++)
+        for(int i = 0; i < 12; i++)
         {
-            appearItems.RemoveAt(i);
-            Destroy(appearItems[i]);
-            
-        }
-        
+            Destroy(appearItems[0]);
+            appearItems.RemoveAt(0);
+        }   
     }
 
     void symbolGenerate()
@@ -97,7 +108,7 @@ public class GameManager : MonoBehaviour
         for(int j = 0; j <= stageNum+1; j++)
         {
             
-            int randomNum = Random.Range(0, 6);
+            int randomNum = Random.Range(0, 7);
             //左側シンボル
             for (int n = 0; n < randomNum; n++)
             {
@@ -106,10 +117,11 @@ public class GameManager : MonoBehaviour
                     
                 }
                 else{
-                    appearItems.Add(Instantiate(items[symbolListCount], pos, Quaternion.identity));
-                    
+                    GameObject symbol = Instantiate(items[symbolListCount], pos, Quaternion.identity);
+                    //symbol.GetComponent<Image>().color = Color.red;
+                    appearItems.Add(symbol);
                 }
-                pos.x += items[symbolListCount].transform.localScale.x + distance;
+                pos.x += symbolDistance;
                 
             }
             //1つだけのシンボル
@@ -127,10 +139,10 @@ public class GameManager : MonoBehaviour
                 
             }
             
-            pos.x += items[symbolListCount].transform.localScale.x + distance;
+            pos.x += symbolDistance;
             
             //右側のシンボル
-            for (int i = 0; i < 5 - randomNum; i++)
+            for (int i = 0; i < 6 - randomNum; i++)
             {
                 if(j > stageNum){
                     appearItems.Add(Instantiate(items[items.Count-1], pos, Quaternion.identity));
@@ -140,13 +152,13 @@ public class GameManager : MonoBehaviour
                     appearItems.Add(Instantiate(items[symbolListCount], pos, Quaternion.identity));
                     
                 }
-                pos.x += items[symbolListCount].transform.localScale.x + distance;
+                pos.x += symbolDistance;
 
             }
 
             //おじゃまブロックを生成
             float obstacleX = Random.Range(-2f, 2f);
-            float obstacleY = Random.Range(lineHight+2.0f, lineHight+3.0f);
+            float obstacleY = Random.Range(lineHight+1f, lineHight+2.0f);
 
             Vector2 posObstacle = new Vector2(obstacleX,obstacleY);
 
@@ -154,22 +166,26 @@ public class GameManager : MonoBehaviour
 
             else appearItems.Add(Instantiate(items[symbolListCount], posObstacle, Quaternion.identity));
             
-            lineHight += 5.0f;
+            lineHight += lineDistance;
             //Debug.Log(lineHight);
             pos = new Vector2(lineWidthStartPoint,lineHight);
             symbolListCount++;
             
             //Debug.Log(symbolListCount);
+            
         }
         stageNum++;
         symbolListCount=0;
+        
+        //ColorChange();
 
         if(stageNum == items.Count-1){
             stageNum = 1;
         }
         
         //if(items.Count-1 <= symbolListCount)return;
-    }
+    }        
+
         /*
         for (int n = 0; n < itemCount; n++)
         {

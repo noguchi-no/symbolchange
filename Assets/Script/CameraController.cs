@@ -6,7 +6,11 @@ public class CameraController : MonoBehaviour
 {
     public GameObject player;
     Vector3 lastPos = new Vector3(0,0,0);
-        
+
+    void Start()
+    {
+        //GetComponent<Camera>().backgroundColor = Color.red;
+    }    
     void Update()
     {
         Vector3 playerPos = this.player.transform.position;
@@ -17,5 +21,7 @@ public class CameraController : MonoBehaviour
             lastPos = transform.position;
    
         }
+        
+
     }
 }
