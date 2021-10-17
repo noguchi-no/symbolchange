@@ -12,6 +12,7 @@ public class ParticleFinish : MonoBehaviour
         if(Player.isGameOver)
         {
             StartCoroutine("WaitParticle");
+            GameManager.HighScoreUpdate();
         }
         Player.isGameOver = false;
         

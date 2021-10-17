@@ -2,11 +2,24 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - CameraController
+    - FadeManager
     - GameManager
+    - GameOverManager
+    - InterfaceAdjustment
+    - ObstacleMove
+    - ParticleFinish
     - Player
+    - SoundManager
+    - ToGame
+    - UIOutline
     - wallController
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -14,8 +27,10 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scene/Game.unity:
@@ -33,9 +48,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 50
       Script: {instanceID: 0}
     - Class: 58
+      Script: {instanceID: 0}
+    - Class: 60
       Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
@@ -43,26 +62,50 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1960}
+      Script: {instanceID: 1518}
     - Class: 114
-      Script: {instanceID: 2250}
+      Script: {instanceID: 1650}
     - Class: 114
-      Script: {instanceID: 2354}
+      Script: {instanceID: 1734}
     - Class: 114
-      Script: {instanceID: 2516}
+      Script: {instanceID: 1994}
     - Class: 114
-      Script: {instanceID: 2636}
+      Script: {instanceID: 2004}
     - Class: 114
-      Script: {instanceID: 2708}
+      Script: {instanceID: 2296}
     - Class: 114
-      Script: {instanceID: 3574}
+      Script: {instanceID: 2310}
     - Class: 114
-      Script: {instanceID: 3934}
+      Script: {instanceID: 2404}
     - Class: 114
-      Script: {instanceID: 4268}
+      Script: {instanceID: 2566}
+    - Class: 114
+      Script: {instanceID: 2638}
+    - Class: 114
+      Script: {instanceID: 2688}
+    - Class: 114
+      Script: {instanceID: 2762}
+    - Class: 114
+      Script: {instanceID: 3512}
+    - Class: 114
+      Script: {instanceID: 3634}
+    - Class: 114
+      Script: {instanceID: 3754}
+    - Class: 114
+      Script: {instanceID: 3994}
+    - Class: 114
+      Script: {instanceID: 4006}
+    - Class: 114
+      Script: {instanceID: 4154}
+    - Class: 114
+      Script: {instanceID: 4330}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -74,6 +117,71 @@ ScriptsOnlyBuild:
     - Class: 198
       Script: {instanceID: 0}
     - Class: 199
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scene/GameOver.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 68
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1518}
+    - Class: 114
+      Script: {instanceID: 1650}
+    - Class: 114
+      Script: {instanceID: 1692}
+    - Class: 114
+      Script: {instanceID: 2004}
+    - Class: 114
+      Script: {instanceID: 2296}
+    - Class: 114
+      Script: {instanceID: 2404}
+    - Class: 114
+      Script: {instanceID: 2566}
+    - Class: 114
+      Script: {instanceID: 2720}
+    - Class: 114
+      Script: {instanceID: 2762}
+    - Class: 114
+      Script: {instanceID: 2844}
+    - Class: 114
+      Script: {instanceID: 3484}
+    - Class: 114
+      Script: {instanceID: 3512}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -130,6 +238,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: 12eb75b215cffb41b0969afb59492fa3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InterfaceAdjustment
+  - hash:
+      serializedVersion: 2
       Hash: 21a9c6dbf300fc1f6dc15ca7e2c39a37
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -148,16 +262,16 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: a55b4b513286ed027bbe5efb1785de9c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIOutline
+  - hash:
+      serializedVersion: 2
       Hash: 300fd99066f8c288e85f5e81ce65fe34
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_FontAsset
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RotateFlareHolder
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -184,6 +298,12 @@ ScriptsOnlyBuild:
     className: PlaymodeTestsController
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FadeSample
+  - hash:
+      serializedVersion: 2
       Hash: c1d728126ff1918728036c59106d32b2
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -194,6 +314,18 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: CanvasScaler
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ParticleFinish
+  - hash:
+      serializedVersion: 2
+      Hash: 4cc8e03b65eb5b8f82d85b6de33c4af0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RectScalerWithViewport
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -263,15 +395,27 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ObstacleMove
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 22ee685583ce70cf45fda91a9cbba33e
+      Hash: f10f607dda07dae1faff58fdc0ede943
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ToGame
   - hash:
       serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
@@ -388,6 +532,12 @@ ScriptsOnlyBuild:
     className: PositionAsUV1
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NewBehaviourScript
+  - hash:
+      serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -424,6 +574,18 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
+      Hash: b1b88c181cf9107e9f7eca22ca2155c3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameOverManager
+  - hash:
+      serializedVersion: 2
+      Hash: 11a7fcf5335e8c4857ac112ae0f5347e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FadeManager
+  - hash:
+      serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -436,7 +598,7 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: 6a180d8fa164b2fcfaad14c81e417138
+      Hash: c4d87efb0bdb2a0b833676f67e73c242
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -508,6 +670,12 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
+      Hash: 38e0adca34891ea7ac9413f44b8cb9cf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SoundManager
+  - hash:
+      serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -539,4 +707,5 @@ ScriptsOnlyBuild:
   platform: 9
   scenePathNames:
   - Assets/Scene/Game.unity
-  playerPath: "/Users/noguchiatsushi/\u30B7\u30F3\u30DC\u30EB\u30C1\u30A7\u30F3\u30B8build"
+  - Assets/Scene/GameOver.unity
+  playerPath: "/Users/noguchiatsushi/\u30B7\u30F3\u30DC\u30EB\u30C1\u30A7\u30F3\u30B8Ver2build"

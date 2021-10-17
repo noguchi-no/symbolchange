@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int itemCount;
     
     public List<GameObject> items = new List<GameObject>();
+    public List<GameObject> obstacles = new List<GameObject>();
     
     List<Vector2> symbolPosition = new List<Vector2>();
 
@@ -23,8 +23,9 @@ public class GameManager : MonoBehaviour
     public float lineWidthStartPoint;
     public float symbolDistance;
     public float lineDistance;
+    public float middleSymbolDistance;
     int countForGenerateHight = 1;
-    int stageNum = 1; 
+    int stageNum; 
     bool lastSymbol;
 
     public Text scoreText;
@@ -34,20 +35,31 @@ public class GameManager : MonoBehaviour
     
     public GameObject canvas;
 
- 
+    public static int highScore = 0;
+
+    public static bool isHighScored;
+
+    public float WallObstacleLeftX;
+    
+    public float WallObstacleRightX;
     
     // Start is called before the first frame update
     void Awake()
     {
         //Time.timeScale = 0f;
+        Application.targetFrameRate = 60;
     }
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         symbolGenerate();
+        score = 0;
+        highScore = PlayerPrefs.GetInt("SCORE", 0);  
     }    
 
     void Update()
     {   
+        
         //PC用
         if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
         {
@@ -62,12 +74,11 @@ public class GameManager : MonoBehaviour
 
         Vector2 playerPos = player.transform.position;
 
-        if(player2.squared){
+        //2回目移行、シンボルを円まで一気に生成するタイミング
+        if(player2.isPolygon10){
 
             if(!isSymbolGenerated){
                 symbolGenerate();
-
-                //Debug.Log("generated!!!");
             }
             isSymbolGenerated = true;
         }
@@ -76,7 +87,7 @@ public class GameManager : MonoBehaviour
         }
         
         //シンボルを定期的に消す
-        if(playerPos.y > 15 * countForGenerateHight){
+        if(playerPos.y > 20 * countForGenerateHight){
             
             isSymbolDeleted = false;
             if(!isSymbolDeleted){
@@ -92,99 +103,113 @@ public class GameManager : MonoBehaviour
     
     void symbolDelete()
     {
-        for(int i = 0; i < 12; i++)
+        for(int i = 0; i < 16; i++)
         {
             Destroy(appearItems[0]);
             appearItems.RemoveAt(0);
         }   
     }
-
+    //円まで一気にシンボルをつくる
     void symbolGenerate()
     {   
         //items[]の順番は大切
         Vector2 pos = new Vector2(lineWidthStartPoint,lineHight);
         
-        
-        for(int j = 0; j <= stageNum+1; j++)
+        for(int j = 0; j < items.Count; j++)
         {
             
-            int randomNum = Random.Range(0, 7);
+            int randomNum = Random.Range(0, 6);
             //左側シンボル
             for (int n = 0; n < randomNum; n++)
             {
-                if(j > stageNum){
+                if(j == items.Count-1){
                     appearItems.Add(Instantiate(items[items.Count-1], pos, Quaternion.identity));
-                    
-                }
-                else{
-                    GameObject symbol = Instantiate(items[symbolListCount], pos, Quaternion.identity);
-                    //symbol.GetComponent<Image>().color = Color.red;
-                    appearItems.Add(symbol);
-                }
-                pos.x += symbolDistance;
-                
-            }
-            //1つだけのシンボル
-            if(j == stageNum){    
-                appearItems.Add(Instantiate(items[items.Count-1], pos, Quaternion.identity));
-                
-            }
-
-            else if(j > stageNum){
-                appearItems.Add(Instantiate(items[0], pos, Quaternion.identity));
-            }
-                
-            else {
-                appearItems.Add(Instantiate(items[symbolListCount+1], pos, Quaternion.identity));
-                
-            }
-            
-            pos.x += symbolDistance;
-            
-            //右側のシンボル
-            for (int i = 0; i < 6 - randomNum; i++)
-            {
-                if(j > stageNum){
-                    appearItems.Add(Instantiate(items[items.Count-1], pos, Quaternion.identity));
-                    
                 }
                 else{
                     appearItems.Add(Instantiate(items[symbolListCount], pos, Quaternion.identity));
                     
                 }
                 pos.x += symbolDistance;
+            }
+            //1つだけのシンボル
+            if(j == items.Count-1){
+                appearItems.Add(Instantiate(items[0], pos, Quaternion.identity));
+            }
+            else{
+                appearItems.Add(Instantiate(items[symbolListCount+1], pos, Quaternion.identity));
+                
+            }
+                pos.x += symbolDistance;
 
+            //右側のシンボル
+            for (int i = 0; i < 5 - randomNum; i++)
+            {
+                if(j == items.Count-1){
+                    appearItems.Add(Instantiate(items[items.Count-1], pos, Quaternion.identity));
+                }
+                else{
+                    appearItems.Add(Instantiate(items[symbolListCount], pos, Quaternion.identity));
+                    
+                }
+                pos.x += symbolDistance;
+                
             }
 
-            //おじゃまブロックを生成
-            float obstacleX = Random.Range(-2f, 2f);
-            float obstacleY = Random.Range(lineHight+1f, lineHight+2.0f);
+            //壁のハリを生成
+            Vector2 posWallObstacleLeft = new Vector2(WallObstacleLeftX, (lineDistance/2) + lineHight);
+            Vector2 posWallObstacleRight = new Vector2(WallObstacleRightX, (lineDistance/2) + lineHight);
 
-            Vector2 posObstacle = new Vector2(obstacleX,obstacleY);
+            appearItems.Add(Instantiate(items[symbolListCount], posWallObstacleLeft, Quaternion.identity));
+            appearItems.Add(Instantiate(items[symbolListCount], posWallObstacleRight, Quaternion.identity));
 
-            if(j > stageNum)appearItems.Add(Instantiate(items[items.Count-1], posObstacle, Quaternion.identity));
+            //posWallObstacleLeft.y += lineDistance/3;
+            //posWallObstacleRight.y += lineDistance/3;
 
-            else appearItems.Add(Instantiate(items[symbolListCount], posObstacle, Quaternion.identity));
-            
+            //appearItems.Add(Instantiate(items[symbolListCount], posWallObstacleLeft, Quaternion.identity));
+            //appearItems.Add(Instantiate(items[symbolListCount], posWallObstacleRight, Quaternion.identity));
+
+            //中央のおじゃまブロックを生成
+            if(j > 3){
+                float obstacleX = Random.Range(-2.0f, -0.5f);
+                float obstacleY = Random.Range(lineHight+1.5f, lineHight+3.5f);
+                Vector2 posObstacle = new Vector2(obstacleX,obstacleY);
+
+                appearItems.Add(Instantiate(obstacles[symbolListCount], posObstacle, Quaternion.identity));
+
+                float obstacleX2 = Random.Range(0.5f, 2.0f);
+                float obstacleY2 = Random.Range(lineHight+1.5f, lineHight+3.5f);
+                Vector2 posObstacle2 = new Vector2(obstacleX2,obstacleY2);
+                appearItems.Add(Instantiate(obstacles[symbolListCount], posObstacle2, Quaternion.identity));
+            }
+            else{
+                float obstacleX = Random.Range(-2f, 2f);
+                float obstacleY = Random.Range(lineHight+1.5f, lineHight+2.0f);
+                Vector2 posObstacle = new Vector2(obstacleX,obstacleY);
+
+                appearItems.Add(Instantiate(obstacles[symbolListCount], posObstacle, Quaternion.identity));
+            }
             lineHight += lineDistance;
-            //Debug.Log(lineHight);
             pos = new Vector2(lineWidthStartPoint,lineHight);
             symbolListCount++;
             
-            //Debug.Log(symbolListCount);
-            
-        }
-        stageNum++;
-        symbolListCount=0;
-        
-        //ColorChange();
 
-        if(stageNum == items.Count-1){
-            stageNum = 1;
         }
         
-        //if(items.Count-1 <= symbolListCount)return;
-    }        
+        symbolListCount=0;
+
+    }    
+
+    public static void HighScoreUpdate()
+    {
+        if(score > highScore){
+            highScore = score;
+            PlayerPrefs.SetInt("SCORE", highScore);
+            PlayerPrefs.Save();
+
+            isHighScored = true;
+
+        }
+    }    
 
         /*
         for (int n = 0; n < itemCount; n++)

@@ -25,14 +25,14 @@ public class Player : MonoBehaviour
 
 
     bool isTriangle = true;
-    public bool squared;
+    bool squared;
     bool circled;
     bool isPolygon5;
     bool isPolygon6;
     bool isPolygon7;
     bool isPolygon8;
     bool isPolygon9;
-    bool isPolygon10;
+    public bool isPolygon10;
     //bool isPolygon11;
 
     public SoundManager sm;
@@ -44,8 +44,11 @@ public class Player : MonoBehaviour
     public float rotationSpeed;
 
     public List <ParticleSystem> particleList = new List<ParticleSystem>();
-    public List <bool> currentGetSymbolList = new List<bool>();
+
+    
+    //public List <bool> currentGetSymbolList = new List<bool>();
     //public GameManager gameManager;
+    public static int symbolLevel;
 
     public static bool isGameOver;
 
@@ -56,7 +59,7 @@ public class Player : MonoBehaviour
         currentSymbol = gameObject.GetComponent<SpriteRenderer>();
         rb.isKinematic = true;
 
-        currentGetSymbolList[0] = true;
+        symbolLevel = 1;
 
     }
 
@@ -72,17 +75,17 @@ public class Player : MonoBehaviour
         //PC用↓
         if(Input.GetKeyDown(KeyCode.RightArrow))
         {
+            rb.velocity = right * JumpPower;
             rb.isKinematic = false;
             sm.JumpSE();
-            rb.velocity = right * JumpPower;
             transform.Rotate(0,0,rotationSpeed);
             
         }
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            rb.velocity = left * JumpPower;
             rb.isKinematic = false;
             sm.JumpSE();
-            rb.velocity = left * JumpPower;
             transform.Rotate(0,0,-rotationSpeed);
             
         }
@@ -91,25 +94,32 @@ public class Player : MonoBehaviour
         {
             if (Input.mousePosition.x > Screen.width / 2)
             {
-                rb.isKinematic = false;
-                sm.JumpSE();
                 rb.velocity = right * JumpPower;
+                rb.isKinematic = false;
+                sm.JumpSE();               
                 transform.Rotate(0,0,rotationSpeed);
                 
             }
             if (Input.mousePosition.x < Screen.width / 2)
             {
-                rb.isKinematic = false;
-                sm.JumpSE();
                 rb.velocity = left * JumpPower;
+                rb.isKinematic = false;
+                sm.JumpSE();                
                 transform.Rotate(0,0,-rotationSpeed);
 
             }
         }
     }
+
     void OnBecameInvisible()
     {
-        //Debug.Log("見えないのでゲームオーバー");
+        var pos = gameObject.transform.position;
+        for(int i = 0; i < particleList.Count; i++)
+        {
+            particleList[i].transform.position = pos;
+        }
+        particleList[0].Play();
+        GameOver();
     }
 
     public void ColorChange()
@@ -146,7 +156,11 @@ public class Player : MonoBehaviour
                 isTriangle = false;
                 squared = true;
                 sm.ChangeSE();
-                currentGetSymbolList[1] = true;
+                if(symbolLevel==1){
+                    symbolLevel = 2;
+                }
+                colorCode = "#ffd6d6";
+                ColorChange();
             }
             else{
             
@@ -164,12 +178,15 @@ public class Player : MonoBehaviour
                 circled = false;
                 isTriangle = true;
                 sm.ChangeSE();
+                colorCode = "#ffffff";
+                ColorChange();
                 
             }
             else{
-            Debug.Log("シンボル間違えたからゲームオーバー");
+            
             particleList[particleList.Count-1].Play();
             sm.BreakSE();
+            GameOver();
             }
             
         }
@@ -184,26 +201,20 @@ public class Player : MonoBehaviour
                     squared = false;
                     isPolygon5 = true;
                     sm.ChangeSE();
-                    currentGetSymbolList[2] = true;
+                    if(symbolLevel==2){
+                    symbolLevel = 3;
+                    }
+                    colorCode = "#ffffd6";
+                    ColorChange();                    
                     return;
                 
             }
                 
-            if(other.gameObject.tag == "Circle"){
-
-                GameManager.score++;
-                currentSymbol.sprite = circleSprite;
-                Destroy(other.gameObject);
-                squared = false;
-                circled = true;
-                sm.ChangeSE();
-                
-            }
-                
             else{
-            Debug.Log("シンボル違ったからゲームオーバー");
+            //Debug.Log("シンボル違ったからゲームオーバー");
             particleList[2].Play();
             sm.BreakSE();
+            GameOver();
             }
             
         }
@@ -217,26 +228,21 @@ public class Player : MonoBehaviour
                 isPolygon5 = false;
                 isPolygon6 = true;
                 sm.ChangeSE();
-                currentGetSymbolList[3] = true;
+                if(symbolLevel==3){
+                symbolLevel = 4;
+                }
+ 
+                colorCode = "#eaffd6";
+                ColorChange();
                 return;
             
             }
 
-            if(other.gameObject.tag == "Circle"){
-                    GameManager.score++;
-                    currentSymbol.sprite = circleSprite;
-                    Destroy(other.gameObject);
-                    isPolygon5 = false;
-                    circled = true;
-                    sm.ChangeSE();
-                    colorCode = "#ffd6d6";
-                    ColorChange();
-                    
-            }
             else{
-            Debug.Log("シンボル違ったからゲームオーバー");
+            //Debug.Log("シンボル違ったからゲームオーバー");
             particleList[3].Play();
             sm.BreakSE();
+            GameOver();
             }
             
         }
@@ -249,25 +255,20 @@ public class Player : MonoBehaviour
             isPolygon6 = false;
             isPolygon7 = true;
             sm.ChangeSE();
-            currentGetSymbolList[4] = true;
+            if(symbolLevel==4){
+            symbolLevel = 5;
+            }
+            colorCode = "#d6ffff";
+            ColorChange();
             return;
 
             }
 
-            if(other.gameObject.tag == "Circle"){
-                    GameManager.score++;
-                    currentSymbol.sprite = circleSprite;
-                    Destroy(other.gameObject);
-                    isPolygon6 = false;
-                    circled = true;
-                    colorCode = "#ffead6";
-                    ColorChange();
-                    sm.ChangeSE();
-            }
             else{
-            Debug.Log("シンボル違ったからゲームオーバー");
+            //Debug.Log("シンボル違ったからゲームオーバー");
             particleList[4].Play();
             sm.BreakSE();
+            GameOver();
             }
             
         }
@@ -280,26 +281,20 @@ public class Player : MonoBehaviour
             isPolygon7 = false;
             isPolygon8 = true;
             sm.ChangeSE();
-            currentGetSymbolList[5] = true;
+            if(symbolLevel==5){
+            symbolLevel = 6;
+            }
+            colorCode = "#d6d6ff";
+            ColorChange();
             return;
             
             }
 
-            if(other.gameObject.tag == "Circle"){
-                    GameManager.score++;
-                    currentSymbol.sprite = circleSprite;
-                    Destroy(other.gameObject);
-                    isPolygon7 = false;
-                    circled = true;
-                    colorCode = "#ffffd6";
-                    ColorChange();
-                    sm.ChangeSE();
-                    
-            }
             else{
-            Debug.Log("シンボル違ったからゲームオーバー");
+            //Debug.Log("シンボル違ったからゲームオーバー");
             particleList[5].Play();
             sm.BreakSE();
+            GameOver();
             }
             
         }
@@ -312,26 +307,21 @@ public class Player : MonoBehaviour
             isPolygon8 = false;
             isPolygon9 = true;
             sm.ChangeSE();
-            currentGetSymbolList[6] = true;
+            if(symbolLevel==6){
+            symbolLevel = 7;
+            }
+ 
+            colorCode = "#d6eaff";
+            ColorChange();
             return;
             
             }
 
-            if(other.gameObject.tag == "Circle"){
-                    GameManager.score++;
-                    currentSymbol.sprite = circleSprite;
-                    Destroy(other.gameObject);
-                    isPolygon8 = false;
-                    circled = true;
-                    colorCode = "#d6ffd6";
-                    ColorChange();
-                    sm.ChangeSE();
-                    
-            }
             else{
-            Debug.Log("シンボル違ったからゲームオーバー");
+            //Debug.Log("シンボル違ったからゲームオーバー");
             particleList[6].Play();
             sm.BreakSE();
+            GameOver();
             }
             
         }
@@ -344,26 +334,20 @@ public class Player : MonoBehaviour
             isPolygon9 = false;
             isPolygon10 = true;
             sm.ChangeSE();
-            currentGetSymbolList[7] = true;
+            if(symbolLevel==7){
+            symbolLevel = 8;
+            }
+            colorCode = "#ead6ff";
+            ColorChange();
             return;
             
             }
 
-            if(other.gameObject.tag == "Circle"){
-                    GameManager.score++;
-                    currentSymbol.sprite = circleSprite;
-                    Destroy(other.gameObject);
-                    isPolygon9 = false;
-                    circled = true;
-                    colorCode = "#d6ffff";
-                    ColorChange();
-                    sm.ChangeSE();
-                    
-            }
             else{
-            Debug.Log("シンボル違ったからゲームオーバー");
+            //Debug.Log("シンボル違ったからゲームオーバー");
             particleList[7].Play();
             sm.BreakSE();
+            GameOver();
             }
             
         }
@@ -375,15 +359,14 @@ public class Player : MonoBehaviour
                     Destroy(other.gameObject);
                     isPolygon10 = false;
                     circled = true;
-                    colorCode = "#d6d6ff";
-                    ColorChange();
                     sm.ChangeSE();
                     
             }
             else{
-            Debug.Log("シンボル違ったからゲームオーバー");
+            //Debug.Log("シンボル違ったからゲームオーバー");
             particleList[8].Play();
             sm.BreakSE();
+            GameOver();
             }
             
         }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1353145512125643047}
   - component: {fileID: 1353145512125643044}
   - component: {fileID: 1353145512125643048}
-  - component: {fileID: 1353145512125643045}
+  - component: {fileID: 6365185759580145282}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1353145512125643049}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: -3.22, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.13, y: 1.13, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -97,9 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d807211e1c3f44fb3a3a5a39215c3ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpPower: 2.5
-  right: {x: 1.1, y: 3}
-  left: {x: -1.1, y: 3}
+  JumpPower: 2.2
+  right: {x: 1, y: 3.6}
+  left: {x: -1, y: 3.6}
   squareSprite: {fileID: 21300000, guid: 10f6d4c2a3b8340d4b0194178ef8a2c8, type: 3}
   triangleSprite: {fileID: 21300000, guid: 1ceb60b24ec7e4c96b563b79ba0604c3, type: 3}
   circleSprite: {fileID: 21300000, guid: af38e1ac818064ba099d17561bdd0d7a, type: 3}
@@ -109,7 +109,7 @@ MonoBehaviour:
   polygon8Sprite: {fileID: 21300000, guid: 92c64aa45992a4ec88f91e4a08950772, type: 3}
   polygon9Sprite: {fileID: 21300000, guid: 43bf1e19fa55a44738fffe09fb922061, type: 3}
   polygon10Sprite: {fileID: 21300000, guid: 5aefc08531c4248c8ae1862d7e0f2286, type: 3}
-  squared: 0
+  isPolygon10: 0
   sm: {fileID: 0}
   _camera: {fileID: 0}
   rotationSpeed: 45
@@ -138,14 +138,14 @@ Rigidbody2D:
   m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 2.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &1353145512125643045
-CircleCollider2D:
+--- !u!60 &6365185759580145282
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,6 +157,23 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012898922, y: 0.019348502}
-  serializedVersion: 2
-  m_Radius: 0.18021524
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.015434008, y: 0.20401879}
+      - {x: -0.17575504, y: -0.09109386}
+      - {x: -0.18717, y: -0.13543418}
+      - {x: -0.173151, y: -0.15488712}
+      - {x: 0.19, y: -0.15260401}
+      - {x: 0.20717002, y: -0.13347195}
+      - {x: 0.20488703, y: -0.094566025}
+      - {x: 0.029774059, y: 0.19488692}
