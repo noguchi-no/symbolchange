@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ParticleFinish : MonoBehaviour
 {
-    private float fadeTime = 0.5f;
-    private float particleTime = 0.6f;
+    private float fadeTime = 0.4f;
+    private float particleTime = 0.7f;
 
     void Update()
     {

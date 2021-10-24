@@ -39,9 +39,6 @@ extern "C" void RegisterStaticallyLinkedModulesGranular()
 	void RegisterModule_TextRendering();
 	RegisterModule_TextRendering();
 
-	void RegisterModule_TextCore();
-	RegisterModule_TextCore();
-
 	void RegisterModule_UI();
 	RegisterModule_UI();
 

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6837296559699338624}
   - component: {fileID: 6837296559699338627}
   - component: {fileID: 6837296559699338626}
-  - component: {fileID: 2018482459}
   m_Layer: 0
   m_Name: Polygon3Particle
   m_TagString: Untagged
@@ -41,7 +40,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6837296559699338637}
   serializedVersion: 7
-  lengthInSec: 0.7
+  lengthInSec: 0.8
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -116,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7
+      scalar: 0.8
       minScalar: 0.10000001
       maxCurve:
         serializedVersion: 2
@@ -916,20 +915,20 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -1
-          outSlope: -1
+          inSlope: -0.58108115
+          outSlope: -0.58108115
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0
-          inSlope: -1
-          outSlope: -1
+          value: 0.41891888
+          inSlope: -0.58108115
+          outSlope: -0.58108115
           tangentMode: 34
           weightedMode: 0
-          inWeight: 0
+          inWeight: 0.33333334
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -4695,16 +4694,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &2018482459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6837296559699338637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f14886ab580948789098c063ffe92c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleTime: 0.7

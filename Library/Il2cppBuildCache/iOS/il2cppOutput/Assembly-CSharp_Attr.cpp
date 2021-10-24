@@ -26,8 +26,6 @@ struct CompilerGeneratedAttribute_t39106AB982658D7A94C27DEF3C48DB2F5F7CD75C;
 struct DebuggableAttribute_tA8054EBD0FC7511695D494B690B5771658E3191B;
 // System.Diagnostics.DebuggerHiddenAttribute
 struct DebuggerHiddenAttribute_tD84728997C009D6F540FB29D88F032350E046A88;
-// UnityEngine.ExecuteInEditMode
-struct ExecuteInEditMode_tAA3B5DE8B7E207BC6CAAFDB1F2502350C0546173;
 // System.Runtime.CompilerServices.IteratorStateMachineAttribute
 struct IteratorStateMachineAttribute_t6C72F3EC15FB34D08D47727AA7A86AB7FEA27830;
 // System.Reflection.MemberFilter
@@ -214,15 +212,6 @@ struct Enum_t23B90B40F60E677A8025267341651C94AE079CDA_marshaled_pinvoke
 struct Enum_t23B90B40F60E677A8025267341651C94AE079CDA_marshaled_com
 {
 };
-
-// UnityEngine.ExecuteInEditMode
-struct ExecuteInEditMode_tAA3B5DE8B7E207BC6CAAFDB1F2502350C0546173  : public Attribute_t037CA9D9F3B742C063DB364D2EEBBF9FC5772C71
-{
-public:
-
-public:
-};
-
 
 // System.IntPtr
 struct IntPtr_t 
@@ -600,12 +589,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void IteratorStateMachineAttribute__ctor_m019
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CompilerGeneratedAttribute__ctor_m9DC3E4E2DA76FE93948D44199213E2E924DCBE35 (CompilerGeneratedAttribute_t39106AB982658D7A94C27DEF3C48DB2F5F7CD75C * __this, const RuntimeMethod* method);
 // System.Void System.Diagnostics.DebuggerHiddenAttribute::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DebuggerHiddenAttribute__ctor_mB40799BB5DAFE439BEFE895836CF792B8DBEA7F3 (DebuggerHiddenAttribute_tD84728997C009D6F540FB29D88F032350E046A88 * __this, const RuntimeMethod* method);
-// System.Void UnityEngine.ExecuteInEditMode::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ExecuteInEditMode__ctor_m52849B67DB46F6CF090D45E523FAE97A10825C0A (ExecuteInEditMode_tAA3B5DE8B7E207BC6CAAFDB1F2502350C0546173 * __this, const RuntimeMethod* method);
-// System.Void UnityEngine.RangeAttribute::.ctor(System.Single,System.Single)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RangeAttribute__ctor_mC74D39A9F20DD2A0D4174F05785ABE4F0DAEF000 (RangeAttribute_t14A6532D68168764C15E7CF1FDABCD99CB32D0C5 * __this, float ___min0, float ___max1, const RuntimeMethod* method);
 // System.Void UnityEngine.RequireComponent::.ctor(System.Type)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RequireComponent__ctor_m5EC89D3D22D7D880E1B88A5C9FADF1FBDC713EE4 (RequireComponent_tEDA546F9722B8874DA9658BDAB821BA49647FC91 * __this, Type_t * ___requiredComponent0, const RuntimeMethod* method);
+// System.Void UnityEngine.RangeAttribute::.ctor(System.Single,System.Single)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RangeAttribute__ctor_mC74D39A9F20DD2A0D4174F05785ABE4F0DAEF000 (RangeAttribute_t14A6532D68168764C15E7CF1FDABCD99CB32D0C5 * __this, float ___min0, float ___max1, const RuntimeMethod* method);
 static void AssemblyU2DCSharp_CustomAttributesCacheGenerator(CustomAttributesCache* cache)
 {
 	{
@@ -712,38 +699,6 @@ static void U3CWaitParticleU3Ed__3_t31B2E18D9A0F5623A19C45A4B0CC028CD424C7C3_Cus
 		DebuggerHiddenAttribute__ctor_mB40799BB5DAFE439BEFE895836CF792B8DBEA7F3(tmp, NULL);
 	}
 }
-static void RectScalerWithViewport_t9C2505CFE95740D348DB14AE619520608A06BDD8_CustomAttributesCacheGenerator(CustomAttributesCache* cache)
-{
-	{
-		ExecuteInEditMode_tAA3B5DE8B7E207BC6CAAFDB1F2502350C0546173 * tmp = (ExecuteInEditMode_tAA3B5DE8B7E207BC6CAAFDB1F2502350C0546173 *)cache->attributes[0];
-		ExecuteInEditMode__ctor_m52849B67DB46F6CF090D45E523FAE97A10825C0A(tmp, NULL);
-	}
-}
-static void RectScalerWithViewport_t9C2505CFE95740D348DB14AE619520608A06BDD8_CustomAttributesCacheGenerator_refRect(CustomAttributesCache* cache)
-{
-	{
-		SerializeField_t6B23EE6CC99B21C3EBD946352112832A70E67E25 * tmp = (SerializeField_t6B23EE6CC99B21C3EBD946352112832A70E67E25 *)cache->attributes[0];
-		SerializeField__ctor_mDE6A7673BA2C1FAD03CFEC65C6D473CC37889DD3(tmp, NULL);
-	}
-}
-static void RectScalerWithViewport_t9C2505CFE95740D348DB14AE619520608A06BDD8_CustomAttributesCacheGenerator_referenceResolution(CustomAttributesCache* cache)
-{
-	{
-		SerializeField_t6B23EE6CC99B21C3EBD946352112832A70E67E25 * tmp = (SerializeField_t6B23EE6CC99B21C3EBD946352112832A70E67E25 *)cache->attributes[0];
-		SerializeField__ctor_mDE6A7673BA2C1FAD03CFEC65C6D473CC37889DD3(tmp, NULL);
-	}
-}
-static void RectScalerWithViewport_t9C2505CFE95740D348DB14AE619520608A06BDD8_CustomAttributesCacheGenerator_matchWidthOrHeight(CustomAttributesCache* cache)
-{
-	{
-		SerializeField_t6B23EE6CC99B21C3EBD946352112832A70E67E25 * tmp = (SerializeField_t6B23EE6CC99B21C3EBD946352112832A70E67E25 *)cache->attributes[0];
-		SerializeField__ctor_mDE6A7673BA2C1FAD03CFEC65C6D473CC37889DD3(tmp, NULL);
-	}
-	{
-		RangeAttribute_t14A6532D68168764C15E7CF1FDABCD99CB32D0C5 * tmp = (RangeAttribute_t14A6532D68168764C15E7CF1FDABCD99CB32D0C5 *)cache->attributes[1];
-		RangeAttribute__ctor_mC74D39A9F20DD2A0D4174F05785ABE4F0DAEF000(tmp, 0.0f, 1.0f, NULL);
-	}
-}
 static void UIOutline_t034C47E3C531FCB7B0D04E355D91B528220E812A_CustomAttributesCacheGenerator(CustomAttributesCache* cache)
 {
 	static bool s_Il2CppMethodInitialized;
@@ -789,12 +744,12 @@ static void UIOutline_t034C47E3C531FCB7B0D04E355D91B528220E812A_CustomAttributes
 static void UIOutline_t034C47E3C531FCB7B0D04E355D91B528220E812A_CustomAttributesCacheGenerator__cornerSegments(CustomAttributesCache* cache)
 {
 	{
-		RangeAttribute_t14A6532D68168764C15E7CF1FDABCD99CB32D0C5 * tmp = (RangeAttribute_t14A6532D68168764C15E7CF1FDABCD99CB32D0C5 *)cache->attributes[0];
-		RangeAttribute__ctor_mC74D39A9F20DD2A0D4174F05785ABE4F0DAEF000(tmp, 1.0f, 20.0f, NULL);
+		SerializeField_t6B23EE6CC99B21C3EBD946352112832A70E67E25 * tmp = (SerializeField_t6B23EE6CC99B21C3EBD946352112832A70E67E25 *)cache->attributes[0];
+		SerializeField__ctor_mDE6A7673BA2C1FAD03CFEC65C6D473CC37889DD3(tmp, NULL);
 	}
 	{
-		SerializeField_t6B23EE6CC99B21C3EBD946352112832A70E67E25 * tmp = (SerializeField_t6B23EE6CC99B21C3EBD946352112832A70E67E25 *)cache->attributes[1];
-		SerializeField__ctor_mDE6A7673BA2C1FAD03CFEC65C6D473CC37889DD3(tmp, NULL);
+		RangeAttribute_t14A6532D68168764C15E7CF1FDABCD99CB32D0C5 * tmp = (RangeAttribute_t14A6532D68168764C15E7CF1FDABCD99CB32D0C5 *)cache->attributes[1];
+		RangeAttribute__ctor_mC74D39A9F20DD2A0D4174F05785ABE4F0DAEF000(tmp, 1.0f, 20.0f, NULL);
 	}
 }
 static void UIOutline_t034C47E3C531FCB7B0D04E355D91B528220E812A_CustomAttributesCacheGenerator__mappingBias(CustomAttributesCache* cache)
@@ -871,10 +826,9 @@ static void U3CTransSceneU3Ed__10_tDB02F6F2FEB94007831B25748B818BA76C9FACF3_Cust
 	}
 }
 IL2CPP_EXTERN_C const CustomAttributesCacheGenerator g_AssemblyU2DCSharp_AttributeGenerators[];
-const CustomAttributesCacheGenerator g_AssemblyU2DCSharp_AttributeGenerators[31] = 
+const CustomAttributesCacheGenerator g_AssemblyU2DCSharp_AttributeGenerators[27] = 
 {
 	U3CWaitParticleU3Ed__3_t31B2E18D9A0F5623A19C45A4B0CC028CD424C7C3_CustomAttributesCacheGenerator,
-	RectScalerWithViewport_t9C2505CFE95740D348DB14AE619520608A06BDD8_CustomAttributesCacheGenerator,
 	UIOutline_t034C47E3C531FCB7B0D04E355D91B528220E812A_CustomAttributesCacheGenerator,
 	U3CTransSceneU3Ed__10_tDB02F6F2FEB94007831B25748B818BA76C9FACF3_CustomAttributesCacheGenerator,
 	GameManager_t9013B33302D2B40A51D0E8059DEE0DC180218AA1_CustomAttributesCacheGenerator_itemCount,
@@ -882,9 +836,6 @@ const CustomAttributesCacheGenerator g_AssemblyU2DCSharp_AttributeGenerators[31]
 	GameOverManager_t819164CC23FACA0BF9C2F295AC60857DF0273E7C_CustomAttributesCacheGenerator_highScoreText,
 	InterfaceAdjustment_tE5917B7DEBDE7CB8EB6357C966B0114C8870FC89_CustomAttributesCacheGenerator_Size,
 	InterfaceAdjustment_tE5917B7DEBDE7CB8EB6357C966B0114C8870FC89_CustomAttributesCacheGenerator_AdjType,
-	RectScalerWithViewport_t9C2505CFE95740D348DB14AE619520608A06BDD8_CustomAttributesCacheGenerator_refRect,
-	RectScalerWithViewport_t9C2505CFE95740D348DB14AE619520608A06BDD8_CustomAttributesCacheGenerator_referenceResolution,
-	RectScalerWithViewport_t9C2505CFE95740D348DB14AE619520608A06BDD8_CustomAttributesCacheGenerator_matchWidthOrHeight,
 	UIOutline_t034C47E3C531FCB7B0D04E355D91B528220E812A_CustomAttributesCacheGenerator_m_Texture,
 	UIOutline_t034C47E3C531FCB7B0D04E355D91B528220E812A_CustomAttributesCacheGenerator__outlineWidth,
 	UIOutline_t034C47E3C531FCB7B0D04E355D91B528220E812A_CustomAttributesCacheGenerator__cornerRadius,

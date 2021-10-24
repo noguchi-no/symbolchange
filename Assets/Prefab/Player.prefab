@@ -97,9 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d807211e1c3f44fb3a3a5a39215c3ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpPower: 2.2
-  right: {x: 1, y: 3.6}
-  left: {x: -1, y: 3.6}
+  JumpPower: 2
+  right: {x: 1.2, y: 3}
+  left: {x: -1.2, y: 3}
   squareSprite: {fileID: 21300000, guid: 10f6d4c2a3b8340d4b0194178ef8a2c8, type: 3}
   triangleSprite: {fileID: 21300000, guid: 1ceb60b24ec7e4c96b563b79ba0604c3, type: 3}
   circleSprite: {fileID: 21300000, guid: af38e1ac818064ba099d17561bdd0d7a, type: 3}
@@ -138,7 +138,7 @@ Rigidbody2D:
   m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2.5
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

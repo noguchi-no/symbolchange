@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     public float lineWidthStartPoint;
     public float symbolDistance;
     public float lineDistance;
-    public float middleSymbolDistance;
     int countForGenerateHight = 1;
     int stageNum; 
     bool lastSymbol;
@@ -113,7 +112,9 @@ public class GameManager : MonoBehaviour
     void symbolGenerate()
     {   
         //items[]の順番は大切
-        Vector2 pos = new Vector2(lineWidthStartPoint,lineHight);
+        Vector2 worldPointPos = Camera.main.ViewportToWorldPoint(new Vector2(0.055f,0));
+        Vector2 pos = new Vector2(worldPointPos.x,lineHight);
+        
         
         for(int j = 0; j < items.Count; j++)
         {
@@ -142,22 +143,34 @@ public class GameManager : MonoBehaviour
                 pos.x += symbolDistance;
 
             //右側のシンボル
-            for (int i = 0; i < 5 - randomNum; i++)
+            for (int i = 0; i < 15; i++)
             {
-                if(j == items.Count-1){
-                    appearItems.Add(Instantiate(items[items.Count-1], pos, Quaternion.identity));
+                //ワールドからビューに座標を変化
+                Vector2 viewPos = Camera.main.WorldToViewportPoint(pos);
+
+                if(viewPos.x <= 1){
+
+                    if(j == items.Count-1){
+                        appearItems.Add(Instantiate(items[items.Count-1], pos, Quaternion.identity));
+                    }
+                    else{
+                        appearItems.Add(Instantiate(items[symbolListCount], pos, Quaternion.identity));
+                    }
                 }
                 else{
-                    appearItems.Add(Instantiate(items[symbolListCount], pos, Quaternion.identity));
-                    
+                    break;
                 }
+                
                 pos.x += symbolDistance;
                 
             }
 
             //壁のハリを生成
-            Vector2 posWallObstacleLeft = new Vector2(WallObstacleLeftX, (lineDistance/2) + lineHight);
-            Vector2 posWallObstacleRight = new Vector2(WallObstacleRightX, (lineDistance/2) + lineHight);
+            Vector2 leftHalfSymbolPos = Camera.main.ViewportToWorldPoint(new Vector2(0,0.5f));
+            Vector2 rightHalfSymbolPos = Camera.main.ViewportToWorldPoint(new Vector2(1,0.5f));
+            
+            Vector2 posWallObstacleLeft = new Vector2(leftHalfSymbolPos.x, (lineDistance/2) + lineHight);
+            Vector2 posWallObstacleRight = new Vector2(rightHalfSymbolPos.x, (lineDistance/2) + lineHight);
 
             appearItems.Add(Instantiate(items[symbolListCount], posWallObstacleLeft, Quaternion.identity));
             appearItems.Add(Instantiate(items[symbolListCount], posWallObstacleRight, Quaternion.identity));
@@ -182,14 +195,14 @@ public class GameManager : MonoBehaviour
                 appearItems.Add(Instantiate(obstacles[symbolListCount], posObstacle2, Quaternion.identity));
             }
             else{
-                float obstacleX = Random.Range(-2f, 2f);
-                float obstacleY = Random.Range(lineHight+1.5f, lineHight+2.0f);
+                float obstacleX = Random.Range(-1.5f, 1.5f);
+                float obstacleY = Random.Range(lineHight+2f, lineHight+2.5f);
                 Vector2 posObstacle = new Vector2(obstacleX,obstacleY);
 
                 appearItems.Add(Instantiate(obstacles[symbolListCount], posObstacle, Quaternion.identity));
             }
             lineHight += lineDistance;
-            pos = new Vector2(lineWidthStartPoint,lineHight);
+            pos = new Vector2(worldPointPos.x,lineHight);
             symbolListCount++;
             
 
